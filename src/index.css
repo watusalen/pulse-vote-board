@@ -65,9 +65,7 @@ All colors MUST be HSL.
     --shadow-positive: 0 0 30px hsl(var(--vote-positive-glow));
     --shadow-negative: 0 0 30px hsl(var(--vote-negative-glow));
   }
-}
-}
-
+  }
 @layer base {
   * {
     @apply border-border;
