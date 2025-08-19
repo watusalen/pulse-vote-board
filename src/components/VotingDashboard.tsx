@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ThumbsUp, ThumbsDown, RotateCcw, Radio } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, RotateCcw, Radio, Sun, Moon } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 interface VoteStats {
   positive: number;
@@ -11,6 +12,7 @@ interface VoteStats {
 
 const VotingDashboard = () => {
   const [votes, setVotes] = useState<VoteStats>({ positive: 0, negative: 0 });
+  const { theme, setTheme } = useTheme();
 
   const handleVote = (type: 'positive' | 'negative') => {
     setVotes(prev => ({
@@ -37,6 +39,14 @@ const VotingDashboard = () => {
               <Radio className="w-4 h-4 mr-2 text-vote-positive animate-pulse-glow" />
               LIVE
             </Badge>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="glass hover:glass-highlight border-border/50 hover:border-border transition-all duration-300"
+            >
+              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </Button>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
             Dashboard de Votação
@@ -54,9 +64,9 @@ const VotingDashboard = () => {
               {totalVotes}
             </div>
             
-            {/* Progress Bar */}
-            {totalVotes > 0 && (
-              <div className="w-full h-4 bg-secondary rounded-full overflow-hidden">
+            {/* Progress Bar - Always visible */}
+            <div className="w-full h-4 bg-secondary rounded-full overflow-hidden">
+              {totalVotes > 0 ? (
                 <div className="h-full flex">
                   <div 
                     className="bg-gradient-to-r from-vote-positive to-emerald-400 progress-bar"
@@ -67,8 +77,10 @@ const VotingDashboard = () => {
                     style={{ width: `${negativePercentage}%` }}
                   />
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className="h-full bg-secondary"></div>
+              )}
+            </div>
           </div>
         </Card>
 
@@ -95,10 +107,9 @@ const VotingDashboard = () => {
 
               <Button 
                 onClick={() => handleVote('positive')}
-                className="w-full bg-gradient-to-r from-vote-positive to-emerald-400 hover:from-emerald-500 hover:to-vote-positive text-white border-0 shadow-lg hover:shadow-vote-positive/30 transition-all duration-300"
+                className="w-full bg-gradient-to-r from-vote-positive to-emerald-400 hover:from-emerald-500 hover:to-vote-positive text-white border-0 shadow-lg hover:shadow-vote-positive/30 transition-all duration-300 text-lg font-semibold"
                 size="lg"
               >
-                <ThumbsUp className="w-5 h-5 mr-2" />
                 Votar Positivo
               </Button>
             </div>
@@ -125,10 +136,9 @@ const VotingDashboard = () => {
 
               <Button 
                 onClick={() => handleVote('negative')}
-                className="w-full bg-gradient-to-r from-vote-negative to-orange-500 hover:from-orange-500 hover:to-vote-negative text-white border-0 shadow-lg hover:shadow-vote-negative/30 transition-all duration-300"
+                className="w-full bg-gradient-to-r from-vote-negative to-orange-500 hover:from-orange-500 hover:to-vote-negative text-white border-0 shadow-lg hover:shadow-vote-negative/30 transition-all duration-300 text-lg font-semibold"
                 size="lg"
               >
-                <ThumbsDown className="w-5 h-5 mr-2" />
                 Votar Negativo
               </Button>
             </div>

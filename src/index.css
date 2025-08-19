@@ -8,7 +8,66 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Modern glassmorphism dark theme colors */
+    /* Light mode colors */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 142 71% 45%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 74% 58%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142 71% 45%;
+
+    --radius: 0.75rem;
+
+    /* Glassmorphism specific colors - Light */
+    --glass-bg: 255 255 255 / 0.8;
+    --glass-border: 0 0% 0% / 0.1;
+    --glass-highlight: 0 0% 0% / 0.05;
+
+    /* Voting colors */
+    --vote-positive: 142 71% 45%;
+    --vote-positive-glow: 142 71% 45% / 0.3;
+    --vote-negative: 0 74% 58%;
+    --vote-negative-glow: 0 74% 58% / 0.3;
+
+    /* Gradients - Light */
+    --gradient-bg: linear-gradient(135deg, hsl(210 40% 98%), hsl(220 13% 91%));
+    --gradient-card: linear-gradient(135deg, hsl(var(--glass-bg)), hsl(210 40% 96% / 0.6));
+    --gradient-positive: linear-gradient(135deg, hsl(var(--vote-positive)), hsl(159 84% 39%));
+    --gradient-negative: linear-gradient(135deg, hsl(var(--vote-negative)), hsl(14 91% 54%));
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Shadows - Light */
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    --shadow-positive: 0 0 30px hsl(var(--vote-positive-glow));
+    --shadow-negative: 0 0 30px hsl(var(--vote-negative-glow));
+  }
+
+  .dark {
+    /* Dark mode colors */
     --background: 224 15% 8%;
     --foreground: 210 40% 98%;
 
@@ -37,35 +96,19 @@ All colors MUST be HSL.
     --input: 217 19% 16%;
     --ring: 142 71% 45%;
 
-    --radius: 0.75rem;
-
-    /* Glassmorphism specific colors */
+    /* Glassmorphism specific colors - Dark */
     --glass-bg: 224 15% 12% / 0.8;
     --glass-border: 210 40% 98% / 0.1;
     --glass-highlight: 210 40% 98% / 0.05;
 
-    /* Voting colors */
-    --vote-positive: 142 71% 45%;
-    --vote-positive-glow: 142 71% 45% / 0.3;
-    --vote-negative: 0 74% 58%;
-    --vote-negative-glow: 0 74% 58% / 0.3;
-
-    /* Gradients */
+    /* Gradients - Dark */
     --gradient-bg: linear-gradient(135deg, hsl(224 15% 8%), hsl(224 25% 12%));
     --gradient-card: linear-gradient(135deg, hsl(var(--glass-bg)), hsl(217 19% 16% / 0.6));
-    --gradient-positive: linear-gradient(135deg, hsl(var(--vote-positive)), hsl(159 84% 39%));
-    --gradient-negative: linear-gradient(135deg, hsl(var(--vote-negative)), hsl(14 91% 54%));
 
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-    /* Shadows */
+    /* Shadows - Dark */
     --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    --shadow-positive: 0 0 30px hsl(var(--vote-positive-glow));
-    --shadow-negative: 0 0 30px hsl(var(--vote-negative-glow));
   }
-  }
+}
 @layer base {
   * {
     @apply border-border;
